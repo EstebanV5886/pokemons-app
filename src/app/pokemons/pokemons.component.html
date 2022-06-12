@@ -1,1 +1,7 @@
-<p>pokemons works!</p>
+<app-header></app-header>
+
+<p>Listado de Pokemons</p>
+
+<ul *ngFor="let pokemon of pokemons">
+  <li>{{pokemon.name}}</li>
+</ul>
