@@ -26,4 +26,6 @@ export class PokemonsComponent implements OnInit {
     this.pokemon = await this.pokemonsService.getOnePokemon(id) as Pokemon;
   }
 
+
+
 }

@@ -1,0 +1,38 @@
+.container {
+  width: 100%;
+}
+
+.subtitle {
+
+}
+
+.search {
+  float: left;
+}
+
+.create {
+  float: right;
+}
+
+.table-pokemons {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+td {
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
