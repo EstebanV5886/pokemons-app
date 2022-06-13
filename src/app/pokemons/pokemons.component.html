@@ -7,54 +7,12 @@
   </div>
 
   <!-- search and create -->
-
-  <div>
-    <div class="search">
-      <input type="text">
-    </div>
-    <div class="create">
-      <button>Create</button>
-    </div>
-  </div>
+  <app-pokemons-search (emitSearchText)="getSearchString($event)"></app-pokemons-search>
 
   <!-- Listado de pokemons -->
+  <app-pokemons-list [pokemons]="pokemons" [searchText]="searchText" (pokemonDeleted)="isPokemonDeleted($event)"></app-pokemons-list>
 
-  <div class="table-pokemons">
-
-    <table>
-
-      <th>Nombre</th>
-      <th>Imagen</th>
-      <th>Ataque</th>
-      <th>Defensa</th>
-      <th>Acciones</th>
-
-
-      <tr *ngFor="let pokemon of pokemons">
-        <td>
-          {{pokemon.name}}
-        </td>
-
-        <td style="height: 75px; width: 75px;">
-          <img src="{{pokemon.image}}" alt="Pokemon {{pokemon.name}}">
-        </td>
-
-        <td>
-          {{pokemon.attack}}
-        </td>
-
-        <td>
-          {{pokemon.defense}}
-        </td>
-
-        <td>
-          <img src="../../assets/icons/search.png" alt="search icon">
-        </td>
-
-      </tr>
-
-    </table>
-
-  </div>
+  <!-- Creación de pokemons -->
+  <app-pokemons-create></app-pokemons-create>
 
 </div>

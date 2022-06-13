@@ -1,0 +1,49 @@
+<div class="create-pokemon">
+
+  <div class="title">Nuevo Pokemon</div>
+
+  <form [formGroup]="pokemonForm">
+
+    <table style="width: 100%;">
+      <tr>
+        <td>
+          <div>
+            <label for="name">
+              Nombre:
+              <input id="name" type="text" formControlName="name">
+            </label>
+          </div>
+        </td>
+        <td>
+          <div>
+            <label for="attack">
+              Ataque:
+              0<input id="attack" type="range" min="1" max="100" formControlName="attack">100
+            </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div>
+            <label for="image">
+              Imagen:
+              <input id="image" type="text" formControlName="image">
+            </label>
+          </div>
+        </td>
+
+        <td>
+          <div>
+            <label for="defense">
+              Defensa:
+              0<input id="defense" type="range" min="1" max="100" formControlName="defense">100
+            </label>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+</div>

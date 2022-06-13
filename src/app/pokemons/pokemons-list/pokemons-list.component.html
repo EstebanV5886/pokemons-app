@@ -1,0 +1,40 @@
+<div class="table-pokemons">
+
+  <table>
+
+    <th>Nombre</th>
+    <th>Imagen</th>
+    <th>Ataque</th>
+    <th>Defensa</th>
+    <th>Acciones</th>
+
+    <tr *ngFor="let pokemon of pokemons | filterPokemons: searchText; let i = index">
+      <td>
+        <span *ngIf="!isEdit">{{pokemon.name}}</span>
+        <input type="text" class="form-control" [(ngModel)]="pokemon.name" *ngIf="isEdit">
+      </td>
+
+      <td style="text-align: center;">
+        <img style="height: 50px; width: 50px" src="{{pokemon.image}}" alt="Pokemon {{pokemon.name}}">
+      </td>
+
+      <td>
+        <span *ngIf="!isEdit">{{pokemon.attack}}</span>
+        <input type="number" class="form-control" [(ngModel)]="pokemon.attack" *ngIf="isEdit">
+      </td>
+
+      <td>
+        <span *ngIf="!isEdit">{{pokemon.defense}}</span>
+        <input type="number" class="form-control" [(ngModel)]="pokemon.defense" *ngIf="isEdit">
+      </td>
+
+      <td class="icons-actions" style="text-align: center;">
+        <img (click)="updatePokemon(pokemon)" class="edit-icon" src="../../assets/icons/write.png" alt="edit icon">
+        <img (click)="deletePokemon(pokemon.id)" class="delete-icon" src="../../assets/icons/delete.png" alt="delete icon">
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>

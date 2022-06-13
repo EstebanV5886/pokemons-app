@@ -1,0 +1,34 @@
+.table-pokemons {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+td {
+  width: 150px;
+  height: 55px;
+}
+
+td span {
+  padding-left: 5px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
+.edit-icon, .delete-icon {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  padding: 0 5px;
+}

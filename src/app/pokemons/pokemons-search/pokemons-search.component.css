@@ -1,0 +1,53 @@
+.search {
+  float: left;
+}
+
+.search-icon {
+  padding-left: 25px !important;
+  background: url('../../../assets/icons/search.png') no-repeat left;
+  background-size: 15px;
+}
+
+.create {
+  float: right;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.search-create {
+  width: 100%;
+}
+
+.create {
+  border: 1px solid #ccc;
+  color: darkslateblue;
+}
+
+.create span.icon-add {
+  background: url('../../../assets/icons/plus.png') no-repeat left;
+  padding-left: 20px;
+  background-size: 15px;
+}
+
+.create {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  color: #fff !important;
+  background-color: darkslateblue;
+  cursor: pointer;
+  margin: 8px 0;
+}
