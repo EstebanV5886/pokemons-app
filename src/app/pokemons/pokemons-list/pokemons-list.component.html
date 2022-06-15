@@ -6,30 +6,43 @@
     <th>Imagen</th>
     <th>Ataque</th>
     <th>Defensa</th>
+    <th>Tipo</th>
+    <th>Puntos de vida</th>
     <th>Acciones</th>
 
     <tr *ngFor="let pokemon of pokemons | filterPokemons: searchText; let i = index">
-      <td>
+      <td [ngClass]="{'center': isEdit}">
         <span *ngIf="!isEdit">{{pokemon.name}}</span>
         <input type="text" class="form-control" [(ngModel)]="pokemon.name" *ngIf="isEdit">
       </td>
 
       <td style="text-align: center;">
-        <img style="height: 50px; width: 50px" src="{{pokemon.image}}" alt="Pokemon {{pokemon.name}}">
+        <img *ngIf="!isEdit" style="height: 50px; width: 50px" src="{{pokemon.image}}" alt="Pokemon {{pokemon.name}}">
+        <input type="text" class="form-control" [(ngModel)]="pokemon.image" *ngIf="isEdit">
       </td>
 
-      <td>
+      <td [ngClass]="{'center': isEdit}">
         <span *ngIf="!isEdit">{{pokemon.attack}}</span>
-        <input type="number" class="form-control" [(ngModel)]="pokemon.attack" *ngIf="isEdit">
+        <input type="number" class="form-control" min="1" max="100" [(ngModel)]="pokemon.attack" *ngIf="isEdit">
       </td>
 
-      <td>
+      <td [ngClass]="{'center': isEdit}">
         <span *ngIf="!isEdit">{{pokemon.defense}}</span>
-        <input type="number" class="form-control" [(ngModel)]="pokemon.defense" *ngIf="isEdit">
+        <input type="number" class="form-control" min="1" max="100"  [(ngModel)]="pokemon.defense" *ngIf="isEdit">
+      </td>
+
+      <td [ngClass]="{'center': isEdit}">
+        <span *ngIf="!isEdit">{{pokemon.type}}</span>
+        <input type="text" class="form-control" [(ngModel)]="pokemon.type" *ngIf="isEdit">
+      </td>
+
+      <td [ngClass]="{'center': isEdit}">
+        <span *ngIf="!isEdit">{{pokemon.hp}}</span>
+        <input type="number" class="form-control" min="1" max="100" [(ngModel)]="pokemon.hp" #hp="ngModel" *ngIf="isEdit">
       </td>
 
       <td class="icons-actions" style="text-align: center;">
-        <img (click)="updatePokemon(pokemon)" class="edit-icon" src="../../assets/icons/write.png" alt="edit icon">
+        <img (click)="updatePokemon(pokemon, i)" class="edit-icon" src="../../assets/icons/write.png" alt="edit icon">
         <img (click)="deletePokemon(pokemon.id)" class="delete-icon" src="../../assets/icons/delete.png" alt="delete icon">
       </td>
 

@@ -1,4 +1,4 @@
-const urlPokemons = 'https://pokemon-pichincha.herokuapp.com/pokemons/';
+const urlPokemons = 'https://bp-pokemons.herokuapp.com/';
 
 export const environment = {
   production: true,

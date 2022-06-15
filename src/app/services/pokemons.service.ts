@@ -1,13 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Pokemon } from '../models/pokemons.interface';
 import { UpdatePokemon } from '../models/update-pokemon.interface';
+import { CreatePokemon } from '../models/create-pokemon.interface';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PokemonsService {
+export class PokemonsService implements OnDestroy {
+
+  subscription: Subscription = new Subscription();
 
   constructor(private readonly http: HttpClient) { }
 
@@ -16,7 +20,7 @@ export class PokemonsService {
 
     return new Promise((resolve, reject) => {
 
-      this.http.get<Pokemon>(url).subscribe((pokemons: Pokemon) => {
+      this.subscription = this.http.get<Pokemon>(url).subscribe((pokemons: Pokemon) => {
 
         resolve(pokemons);
 
@@ -29,7 +33,7 @@ export class PokemonsService {
 
     return new Promise((resolve, reject) => {
 
-      this.http.get<Pokemon>(url).subscribe((pokemon: Pokemon) => {
+      this.subscription = this.http.get<Pokemon>(url).subscribe((pokemon: Pokemon) => {
 
         resolve(pokemon);
 
@@ -37,12 +41,14 @@ export class PokemonsService {
     });
   }
 
-  createPokemon(body: Pokemon) {
+  createPokemon(body: CreatePokemon) {
     const url = `${environment.urlPokemons}?idAuthor=1`;
 
     return new Promise((resolve, reject) => {
 
-      this.http.post<any>(url, body).subscribe((result: any) => {
+      this.subscription = this.http.post<any>(url, body).subscribe((result: any) => {
+
+        console.log('result', result);
 
         resolve(result);
 
@@ -51,12 +57,14 @@ export class PokemonsService {
     });
   }
 
-  updatePokemon(id: number, body: UpdatePokemon) {
+  updatePokemon(id: number, body: UpdatePokemon): Promise<Pokemon> {
     const url = `${environment.urlPokemons}${id}`;
 
     return new Promise((resolve, reject) => {
 
-      this.http.put<any>(url, body).subscribe((result: any) => {
+      this.subscription = this.http.put<any>(url, body).subscribe((result: any) => {
+
+        console.log('result', result);
 
         resolve(result);
 
@@ -70,12 +78,16 @@ export class PokemonsService {
 
     return new Promise((resolve, reject) => {
 
-      this.http.delete<any>(url).subscribe((result: any) => {
+      this.subscription = this.http.delete<any>(url).subscribe((result: any) => {
 
         resolve(result);
 
       }, reject);
 
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

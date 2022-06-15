@@ -1,49 +1,79 @@
-<div class="create-pokemon">
-
-  <div class="title">Nuevo Pokemon</div>
+<div #target class="create-pokemon">
 
   <form [formGroup]="pokemonForm">
 
-    <table style="width: 100%;">
-      <tr>
-        <td>
-          <div>
-            <label for="name">
-              Nombre:
-              <input id="name" type="text" formControlName="name">
-            </label>
-          </div>
-        </td>
-        <td>
-          <div>
-            <label for="attack">
-              Ataque:
-              0<input id="attack" type="range" min="1" max="100" formControlName="attack">100
-            </label>
-          </div>
-        </td>
-      </tr>
+    <div class="row">
 
-      <tr>
-        <td>
-          <div>
-            <label for="image">
-              Imagen:
-              <input id="image" type="text" formControlName="image">
-            </label>
-          </div>
-        </td>
+      <div class="title">Nuevo Pokemon</div>
 
-        <td>
-          <div>
-            <label for="defense">
-              Defensa:
-              0<input id="defense" type="range" min="1" max="100" formControlName="defense">100
-            </label>
-          </div>
-        </td>
-      </tr>
-    </table>
+      <div class="column">
+
+        <div>
+          <label for="name">
+            Nombre:
+            <input id="name" type="text" formControlName="name">
+          </label>
+        </div>
+
+        <div>
+          <label for="image">
+            Imagen:
+            <input id="image" type="text" formControlName="image">
+          </label>
+        </div>
+
+        <div>
+          <label for="hp">
+            Puntos de vida:
+            <input id="hp" type="number" max="100" min="1" formControlName="hp">
+          </label>
+        </div>
+
+        <div style="color: red; text-align: end;" *ngIf="hp.errors?.['max']">
+          El número de puntos de vida no puede ser mayor que 100.
+        </div>
+
+      </div>
+
+      <div class="column">
+
+        <div class="range">
+          <label for="attack">
+            Ataque:
+            <input id="attack" type="range" min="0" max="100" formControlName="attack"><span>{{pokemonForm.value.attack}}</span>
+          </label>
+        </div>
+
+        <div class="range">
+          <label for="defense">
+            Defensa:
+            <input id="defense" type="range" min="0" max="100" formControlName="defense"><span>{{pokemonForm.value.defense}}</span>
+          </label>
+        </div>
+
+        <div>
+          <label for="type">
+            Tipo de Pokemon:
+            <input id="type" type="text" formControlName="type">
+          </label>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div style="text-align: center; margin-bottom: 10px;">
+
+      <button (click)="createPokemon()" class="create" type="submit" [ngClass]="{'disabled': !pokemonForm.valid || isCreated}" [disabled]="!pokemonForm.valid || isCreated">
+        <img src="../../../assets/icons/floppy-disk.png" height="12"/> Guardar
+      </button>
+
+      <button (click)="cancel()" class="create" type="submit">
+        <img src="../../../assets/icons/x.png" height="12"/> Cancelar
+      </button>
+
+    </div>
+
   </form>
 
 </div>

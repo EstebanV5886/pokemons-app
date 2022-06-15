@@ -42,12 +42,12 @@ input[type=text] {
   font-weight: 400;
   text-align: center;
   border: 1px solid transparent;
-  padding: .375rem .75rem;
   font-size: 1rem;
-  line-height: 1.5;
-  border-radius: .25rem;
+  line-height: 0.5;
+  border-radius: 0.25rem;
   color: #fff !important;
   background-color: darkslateblue;
   cursor: pointer;
-  margin: 8px 0;
+  margin: 11px 0 8px;
+  padding: 14px 25px;
 }

@@ -50,4 +50,10 @@ export class PokemonsComponent implements OnInit, OnChanges {
     }
   }
 
+  isPokemonCreated(created: boolean) {
+    if (created) {
+      this.getAllPokemons();
+    }
+  }
+
 }

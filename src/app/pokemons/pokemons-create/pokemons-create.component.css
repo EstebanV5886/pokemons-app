@@ -1,5 +1,13 @@
 .create-pokemon {
-  padding-top: 25px;
+  padding-top: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+}
+
+label {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
 }
 
 input[type=text] {
@@ -12,6 +20,93 @@ input[type=text] {
   box-sizing: border-box;
 }
 
+input[type=number] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+input[type=range] {
+  width: 50%;
+  margin: 2px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
 .title {
   text-align: center;
+  padding-top: 15px;
+}
+
+.column {
+  float: left;
+  width: 45%;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.create {
+  border: 1px solid #ccc;
+  color: darkslateblue;
+}
+
+.create span.icon-save {
+  background: url('../../../assets/icons/floppy-disk.png') no-repeat left;
+  padding-left: 20px;
+  background-size: 15px;
+}
+
+.create span.icon-cancel {
+  background: url('../../../assets/icons/x.png') no-repeat left;
+  padding-left: 20px;
+  background-size: 15px;
+}
+
+.create {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  border: 1px solid transparent;
+  padding: .375rem 1.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  color: #fff !important;
+  background-color: darkslateblue;
+  cursor: pointer;
+  margin: 8px 0 0 5px ;
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: darkslateblue;
+  opacity: 0.5;
+}
+
+.range {
+  padding: 12px 20px;
+  margin: 6px 0;
+  text-align: right;
+}
+
+@media only screen and (max-width: 600px) {
+  .column {
+    float: left;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
 }

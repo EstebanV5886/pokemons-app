@@ -3,4 +3,7 @@ export interface UpdatePokemon {
   image?: string;
   attack?: number;
   defense?: number;
+  type?: string;
+  hp?: number;
+  idAuthor: number;
 }

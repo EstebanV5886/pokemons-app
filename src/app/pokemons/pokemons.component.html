@@ -13,6 +13,6 @@
   <app-pokemons-list [pokemons]="pokemons" [searchText]="searchText" (pokemonDeleted)="isPokemonDeleted($event)"></app-pokemons-list>
 
   <!-- Creación de pokemons -->
-  <app-pokemons-create></app-pokemons-create>
+  <app-pokemons-create id="create" (pokemonCreated)="isPokemonCreated($event)"></app-pokemons-create>
 
 </div>
