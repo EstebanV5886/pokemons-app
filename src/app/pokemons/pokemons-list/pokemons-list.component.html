@@ -13,36 +13,43 @@
     <tr *ngFor="let pokemon of pokemons | filterPokemons: searchText; let i = index">
       <td [ngClass]="{'center': isEdit}">
         <span *ngIf="!isEdit">{{pokemon.name}}</span>
-        <input type="text" class="form-control" [(ngModel)]="pokemon.name" *ngIf="isEdit">
+        <span *ngIf="isEdit && enableEditIndex != i">{{pokemon.name}}</span>
+        <input type="text" class="form-control" [(ngModel)]="pokemon.name" *ngIf="isEdit && enableEditIndex == i">
       </td>
 
       <td style="text-align: center;">
         <img *ngIf="!isEdit" style="height: 50px; width: 50px" src="{{pokemon.image}}" alt="Pokemon {{pokemon.name}}">
-        <input type="text" class="form-control" [(ngModel)]="pokemon.image" *ngIf="isEdit">
+        <img *ngIf="isEdit && enableEditIndex != i" style="height: 50px; width: 50px" src="{{pokemon.image}}" alt="Pokemon {{pokemon.name}}">
+        <input type="text" class="form-control" [(ngModel)]="pokemon.image" *ngIf="isEdit && enableEditIndex == i">
       </td>
 
       <td [ngClass]="{'center': isEdit}">
         <span *ngIf="!isEdit">{{pokemon.attack}}</span>
-        <input type="number" class="form-control" min="1" max="100" [(ngModel)]="pokemon.attack" *ngIf="isEdit">
+        <span *ngIf="isEdit && enableEditIndex != i">{{pokemon.attack}}</span>
+        <input type="number" class="form-control" min="1" max="100" [(ngModel)]="pokemon.attack" *ngIf="isEdit && enableEditIndex == i">
       </td>
 
       <td [ngClass]="{'center': isEdit}">
         <span *ngIf="!isEdit">{{pokemon.defense}}</span>
-        <input type="number" class="form-control" min="1" max="100"  [(ngModel)]="pokemon.defense" *ngIf="isEdit">
+        <span *ngIf="isEdit && enableEditIndex != i">{{pokemon.defense}}</span>
+        <input type="number" class="form-control" min="1" max="100"  [(ngModel)]="pokemon.defense" *ngIf="isEdit && enableEditIndex == i">
       </td>
 
       <td [ngClass]="{'center': isEdit}">
         <span *ngIf="!isEdit">{{pokemon.type}}</span>
-        <input type="text" class="form-control" [(ngModel)]="pokemon.type" *ngIf="isEdit">
+        <span *ngIf="isEdit && enableEditIndex != i">{{pokemon.type}}</span>
+        <input type="text" class="form-control" [(ngModel)]="pokemon.type" *ngIf="isEdit && enableEditIndex == i">
       </td>
 
       <td [ngClass]="{'center': isEdit}">
         <span *ngIf="!isEdit">{{pokemon.hp}}</span>
-        <input type="number" class="form-control" min="1" max="100" [(ngModel)]="pokemon.hp" #hp="ngModel" *ngIf="isEdit">
+        <span *ngIf="isEdit && enableEditIndex != i">{{pokemon.hp}}</span>
+        <input type="number" class="form-control" min="1" max="100" [(ngModel)]="pokemon.hp" #hp="ngModel" *ngIf="isEdit && enableEditIndex == i">
       </td>
 
       <td class="icons-actions" style="text-align: center;">
-        <img (click)="updatePokemon(pokemon, i)" class="edit-icon" src="../../assets/icons/write.png" alt="edit icon">
+        <img *ngIf="isEdit && enableEditIndex == i" [ngClass]="{'disabled': pokemon.hp > 100 || pokemon.attack > 100 || pokemon.defense > 100}" (click)="updatePokemon(pokemon)" class="edit-icon" src="../../assets/icons/write.png" alt="edit icon">
+        <img *ngIf="!isEdit" (click)="enableEdit(i)" class="edit-icon" src="../../assets/icons/write.png" alt="edit icon">
         <img (click)="deletePokemon(pokemon.id)" class="delete-icon" src="../../assets/icons/delete.png" alt="delete icon">
       </td>
 

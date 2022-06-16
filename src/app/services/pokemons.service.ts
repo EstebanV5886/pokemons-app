@@ -48,8 +48,6 @@ export class PokemonsService implements OnDestroy {
 
       this.subscription = this.http.post<any>(url, body).subscribe((result: any) => {
 
-        console.log('result', result);
-
         resolve(result);
 
       }, reject);
@@ -63,8 +61,6 @@ export class PokemonsService implements OnDestroy {
     return new Promise((resolve, reject) => {
 
       this.subscription = this.http.put<any>(url, body).subscribe((result: any) => {
-
-        console.log('result', result);
 
         resolve(result);
 

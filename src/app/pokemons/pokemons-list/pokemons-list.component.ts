@@ -31,12 +31,15 @@ export class PokemonsListComponent implements OnInit {
     }
   }
 
-  async updatePokemon(pokemon: Pokemon, index: number) {
+  async updatePokemon(pokemon: Pokemon) {
 
-    this.isEdit = !this.isEdit;
-    this.enableEditIndex = index;
+    const onePokemon = await this.getOnePokemon(pokemon.id);
 
-    this.validateEdit(pokemon);
+    if (JSON.stringify(onePokemon) === JSON.stringify(pokemon)) {
+      alert('No se ha realizado ningún cambio');
+      this.isEdit = false;
+      return;
+    }
 
     const body: UpdatePokemon = {
       name: pokemon.name,
@@ -57,7 +60,7 @@ export class PokemonsListComponent implements OnInit {
     }
 
     alert('El pokemon ha sido editado con éxito');
-
+    this.isEdit = false;
   }
 
   async deletePokemon(id: number) {
@@ -65,41 +68,30 @@ export class PokemonsListComponent implements OnInit {
 
     if (confirm(text) === true) {
 
-      const deletePokemon = await this.pokemonsService.deletePokemon(id);
+      const deletePokemon: any = await this.pokemonsService.deletePokemon(id);
 
-      if (deletePokemon) {
+      if (deletePokemon.success === false) {
+        this.isDeleted = false;
+        alert('El Pokemon no se ha podido eliminar');
+      } else {
         this.isDeleted = true;
         this.pokemonDeleted.emit(this.isDeleted);
         alert('El Pokemon ha sido eliminado');
-      } else {
-        this.isDeleted = false;
-        alert('El Pokemon no se ha podido eliminar');
       }
 
     }
 
-
   }
 
-  enableEdit() {
-    this.isEdit = !this.isEdit;
+  enableEdit(index: number) {
+    this.isEdit = true;
+    this.enableEditIndex = index;
   }
 
-  validateEdit(pokemon: Pokemon) {
-    if(pokemon.hp > 100) {
-      alert('Los puntos de vida no pueden ser mayor a 100');
-      return;
-    }
+  async getOnePokemon(id: number) {
+    const pokemon = await this.pokemonsService.getOnePokemon(id);
 
-    if(pokemon.attack > 100) {
-      alert('El Ataque del Pokemon no puede ser mayor a 100');
-      return;
-    }
-
-    if(pokemon.defense > 100) {
-      alert('La defensa del Pokemon no puede ser mayor a 100');
-      return;
-    }
+    return pokemon;
   }
 
 }

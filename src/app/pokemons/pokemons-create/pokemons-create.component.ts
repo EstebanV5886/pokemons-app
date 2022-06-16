@@ -9,8 +9,8 @@ import { PokemonsService } from '../../services/pokemons.service';
 })
 export class PokemonsCreateComponent implements OnInit {
 
-  pokemonForm!: FormGroup;
   @Output() pokemonCreated = new EventEmitter<boolean>();
+  pokemonForm!: FormGroup;
   isCreated = false;
 
   constructor(private readonly formBuilder: FormBuilder, private pokemonsService: PokemonsService) { }
@@ -53,6 +53,7 @@ export class PokemonsCreateComponent implements OnInit {
       alert('Error al crear el pokemon');
     } else {
       this.pokemonCreated.emit(this.isCreated);
+      this.clearForm();
       alert('Pokemon creado con éxito');
     }
   }

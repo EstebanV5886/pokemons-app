@@ -56,3 +56,9 @@ input[type=number] {
   border-radius: 2px;
   box-sizing: border-box;
 }
+
+.disabled {
+  pointer-events: none;
+  background-color: transparent;
+  opacity: 0.5;
+}

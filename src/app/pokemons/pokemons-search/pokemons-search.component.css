@@ -2,11 +2,11 @@
   float: left;
 }
 
-.search-icon {
-  padding-left: 25px !important;
-  background: url('../../../assets/icons/search.png') no-repeat left;
-  background-size: 15px;
-}
+  .search-icon {
+    padding-left: 30px !important;
+    background: url('../../../assets/icons/search.png') no-repeat scroll 7px 10px;
+    background-size: 15px;
+  }
 
 .create {
   float: right;

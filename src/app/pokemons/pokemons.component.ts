@@ -8,13 +8,13 @@ import { PokemonsService } from '../services/pokemons.service';
   templateUrl: './pokemons.component.html',
   styleUrls: ['./pokemons.component.css']
 })
-export class PokemonsComponent implements OnInit, OnChanges {
+export class PokemonsComponent implements OnInit {
 
+  @Input() searchText = '';
   pokemons: Pokemon[] = [];
-  pokemon!: Pokemon;
   isEdit = false;
   isDelete = false;
-  @Input() searchText = '';
+
 
   constructor(private readonly pokemonsService: PokemonsService) { }
 
@@ -22,22 +22,8 @@ export class PokemonsComponent implements OnInit, OnChanges {
     this.getAllPokemons();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes pokemons component', changes);
-  }
-
   async getAllPokemons() {
     this.pokemons = await this.pokemonsService.getAllPokemons() as Pokemon[];
-  }
-
-  async getOnePokemon(id: number) {
-    this.pokemon = await this.pokemonsService.getOnePokemon(id) as Pokemon;
-  }
-
-  async deletePokemon(id: number) {
-    const deletePokemon = await this.pokemonsService.deletePokemon(id);
-
-    return deletePokemon;
   }
 
   getSearchString(searchString: string) {
