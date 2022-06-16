@@ -36,6 +36,7 @@ export class PokemonsCreateComponent implements OnInit {
 
   async createPokemon() {
     this.isCreated = true;
+
     const dataPokemon = {
       name: this.pokemonForm.controls.name.value,
       image: this.pokemonForm.controls.image.value,
